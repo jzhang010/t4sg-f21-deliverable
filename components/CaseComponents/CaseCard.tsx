@@ -8,7 +8,7 @@ import {
   CardSubtitle,
   CardText,
 } from "reactstrap";
-import { useQuery } from "urql";
+import { useMutation, useQuery } from "urql";
 import { Box } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 
@@ -22,6 +22,15 @@ export type CaseData = {
   description: string;
   id: number;
 };
+
+const DeleteCaseMutation = `mutation MyMutation($id: bigint = "") {
+  delete_cases_by_pk(id: $id) {
+    id
+  }
+}`;
+
+
+const [result, executeMutation] = useMutation(DeleteCaseMutation);
 
 const CaseCard: React.FC<CaseCardProps> = (props) => {
   const caseData = props.data;
@@ -37,7 +46,8 @@ const CaseCard: React.FC<CaseCardProps> = (props) => {
             width="100%"
           >
             <CardTitle tag="h3">{caseData.name}</CardTitle>
-            <CloseIcon />
+            <CloseIcon 
+            />
           </Box>
 
           <CardSubtitle tag="h6" className="mb-2 text-muted">

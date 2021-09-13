@@ -4,7 +4,7 @@ import { Container } from "reactstrap";
 import Grid, { GridSpacing } from "@material-ui/core/Grid";
 import "../../styles/casemanagement.module.css";
 import Footer from "./Footer";
-import CaseCategory from "./CaseCategory";
+import CaseCategory, { CaseCategoryData } from "./CaseCategory";
 import AddCaseModal from "./Modals/AddCaseModal";
 import { useQuery } from "urql";
 import AddCategoryModal from "./Modals/AddCategoryModal";
@@ -18,9 +18,15 @@ import AddCategoryModal from "./Modals/AddCategoryModal";
   Make sure to replace the string that is currently
   in this variable 
 */
+
+
+
 export const ManagementContainerQuery = `
 query MyQuery {
-  __typename 
+  category {
+    id
+    name
+  }
 }
 `;
 // END TODO
@@ -41,6 +47,7 @@ const CaseManagementContainer: React.FC = (props) => {
     query: ManagementContainerQuery,
   });
 
+
   return (
     <>
       <h5 className="title">Home Page</h5>
@@ -50,7 +57,13 @@ const CaseManagementContainer: React.FC = (props) => {
           Use the data from the result of the query to render 
           a CaseCategory for every category in the response.
           Remember, the response is stored in the "data" variable!
-        */}
+        */
+          data
+            ? data.category.map((c: ManagementCategory) => {
+                return <CaseCategory category_id={c.id} />;
+              })
+            : "Something went wrong"
+        }
 
         {/* END TODO */}
       </Grid>

@@ -7,7 +7,7 @@ type CaseCategoryProps = {
   category_id: number;
 };
 
-type CaseCategoryData = {
+export type CaseCategoryData = {
   name: string;
   cases: CaseData[];
 };
