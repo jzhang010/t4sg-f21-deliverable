@@ -30,7 +30,7 @@ const DeleteCaseMutation = `mutation MyMutation($id: bigint = "") {
 }`;
 
 
-const [result, executeMutation] = useMutation(DeleteCaseMutation);
+//const [result, executeMutation] = useMutation(DeleteCaseMutation);
 
 const CaseCard: React.FC<CaseCardProps> = (props) => {
   const caseData = props.data;
