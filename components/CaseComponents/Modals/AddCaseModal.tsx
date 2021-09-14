@@ -139,7 +139,7 @@ const AddCaseModal: React.FC<AddCaseModalProps> = (props) => {
                 data
                 ? data.category.map((c: ManagementCategory, index: number) => {
                   return (
-                  <MenuItem value={c.id}>
+                  <MenuItem key={index} value={c.id}>
                   {c.name}
                   </MenuItem> )
                 })
